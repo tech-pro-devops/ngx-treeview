@@ -1,0 +1,18 @@
+<div *ngIf="data && data.length > 0" class="ngx-treeview">
+    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+        <mat-tree-node *matTreeNodeDef="let treeNode" matTreeNodePadding fxLayout="column" fxLayoutAlign="start">
+            <div fxLayout="row">
+                <mat-icon class="ngx-tree-view-expand-collapse-icon"></mat-icon>
+                <div>{{treeNode?.node[treeNodeNameProperty]}}</div>
+            </div>
+        </mat-tree-node>
+        <mat-tree-node *matTreeNodeDef="let treeNode; when: hasChild" matTreeNodePadding fxLayout="column" fxLayoutAlign="start">
+            <div fxLayout="row">
+                <mat-icon matTreeNodeToggle class="ngx-tree-view-expand-collapse-icon">{{ treeControl.isExpanded(treeNode) ? 'expand_more' : 'chevron_right'}}</mat-icon>
+                <div>{{treeNode?.node[treeNodeNameProperty]}}</div>
+            </div>
+        </mat-tree-node>
+     </mat-tree>
+</div>
+
+ 
