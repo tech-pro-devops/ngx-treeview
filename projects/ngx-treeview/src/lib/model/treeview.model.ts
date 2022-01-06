@@ -1,3 +1,8 @@
+export interface NgxTreeViewOptions{
+    nodeNameProperty? : string;
+    childrenProperty? : string;
+}
+
 export class TreeNode {
     id?: number; 
     name?: string;
@@ -12,17 +17,6 @@ export class FlatTreeNode {
     public expandable? = false;
     public isLoading? = false;
 }
-
-[
-
-    {   
-        id: 1, 
-        name:"SAhil", 
-        children: [
-
-        ]   
-    }
-]
 
 export class NestedTreeNode {
     

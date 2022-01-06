@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TreeNode } from 'projects/ngx-treeview/src/lib/model/tree-node.model';
+import { TreeNode } from 'projects/ngx-treeview/src/lib/model/treeview.model';
 import { AppService } from './app.service';
 
 @Component({

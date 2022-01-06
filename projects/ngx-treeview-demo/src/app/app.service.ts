@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { TreeNode } from "projects/ngx-treeview/src/lib/model/tree-node.model";
+import { TreeNode } from "projects/ngx-treeview/src/lib/model/treeview.model";
 
 @Injectable({
     providedIn: 'root'
@@ -12,10 +12,12 @@ export class AppService{
             {
               id: 1,
               name: 'India',
+              iconPath : './assets/demo.png',
               children: [
                 {
                   id: 4,
-                  name: 'Chandigarh'
+                  name: 'Chandigarh',
+                  iconPath : './assets/demo.png'
                 },
                 {
                   id: 5,

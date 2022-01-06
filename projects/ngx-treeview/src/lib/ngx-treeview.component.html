@@ -12,11 +12,11 @@
         <mat-tree-node *matTreeNodeDef="let treeNode; when: hasChild" matTreeNodePadding fxLayout="column"
             fxLayoutAlign="start">
             <div fxLayout="row" fxLayoutAlign="start center">
-                <mat-icon *ngIf="!treeNode?.node?.iconPath" matTreeNodeToggle class="ngx-treeview-expand-collapse-icon">
+                <mat-icon matTreeNodeToggle class="ngx-treeview-expand-collapse-icon">
                     {{ treeControl.isExpanded(treeNode) ? collapseMaterialIcon : expandMaterialIcon}}</mat-icon>
                 <img *ngIf="treeNode?.node?.iconPath" matTreeNodeToggle class="ngx-treeview-expand-collapse-icon"
                     [src]="treeNode?.node?.iconPath" alt="ngx-treeview-icon">
-                <div *ngIf="!template">{{treeNode?.node[nodeNameProperty]}}</div>
+                <div matTreeNodeToggle *ngIf="!template">{{treeNode?.node[nodeNameProperty]}}</div>
                 <ngx-treeview-dynamic-template *ngIf="template" [template]="template" [treeControl]="treeControl" [nodeData]="treeNode" (callbackFn)="callbackFn($event)"></ngx-treeview-dynamic-template>
             </div>
         </mat-tree-node>

@@ -4,7 +4,7 @@ import {FlatTreeControl} from '@angular/cdk/tree';
 import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
 import {BehaviorSubject} from 'rxjs';
 
-import { FlatTreeNode, TreeNode } from './model/tree-node.model';
+import { FlatTreeNode, NgxTreeViewOptions, TreeNode } from './model/treeview.model';
 
 @Component({
   selector: 'ngx-treeview',
@@ -17,6 +17,7 @@ export class NgxTreeviewComponent implements OnInit {
   @Input() childrenProperty: string = 'children';
   @Input() expandMaterialIcon: string = 'chevron_right';
   @Input() collapseMaterialIcon: string = 'expand_more';
+  @Input() options : NgxTreeViewOptions;
   @Input() template : Component;
   @Output() callbackHandler = new EventEmitter();
 
