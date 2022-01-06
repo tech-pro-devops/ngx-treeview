@@ -67,7 +67,8 @@ export class AppService{
             },
             {
               id: 3,
-              name: 'Canada'
+              name: 'Canada',
+              iconPath : './assets/demo.png'
             }
           ]
     }

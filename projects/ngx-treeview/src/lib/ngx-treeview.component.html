@@ -1,23 +1,33 @@
 <div *ngIf="data && data.length > 0" class="ngx-treeview">
     <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
         <mat-tree-node *matTreeNodeDef="let treeNode" matTreeNodePadding fxLayout="column" fxLayoutAlign="start">
-            <div fxLayout="row" fxLayoutAlign="start center">
-                <mat-icon *ngIf="!treeNode?.node?.iconPath" class="ngx-treeview-icon"></mat-icon>
-                <img *ngIf="treeNode?.node?.iconPath" class="ngx-treeview-icon"
-                    [src]="treeNode?.node?.iconPath" alt="ngx-treeview-icon">
-                <div *ngIf="!template">{{treeNode?.node[nodeNameProperty]}}</div>
-                <ngx-treeview-dynamic-template *ngIf="template" [template]="template" [treeControl]="treeControl" [nodeData]="treeNode" (callbackFn)="callbackFn($event)"></ngx-treeview-dynamic-template>
+            <div [fxLayout]="options.iconPosition == 'prefix' ? 'row' : 'row-reverse'" [fxLayoutAlign]="options.iconPosition == 'prefix' ? 'start center' : 'space-between'">
+                <mat-icon *ngIf="options.showExpandCollapseIcon" class="ngx-treeview-expand-collapse-icon hidden"></mat-icon>
+                <div [fxLayout]="options.nodeIconPosition == 'prefix' ? 'row' : 'row-reverse'" fxLayoutAlign="start center" class="ngx-treeview-node">
+                    <img *ngIf="treeNode?.node?.iconPath" class="ngx-treeview-icon" [src]="treeNode?.node?.iconPath"
+                        alt="ngx-treeview-icon">
+                    <div class="ngx-treeview-node-label" *ngIf="!template">{{treeNode?.node[options?.nodeNameProperty]}}</div>
+                    <ngx-treeview-dynamic-template *ngIf="template" [template]="template" [treeControl]="treeControl"
+                        [nodeData]="treeNode" (callbackFn)="callbackFn($event)"></ngx-treeview-dynamic-template>
+                </div>
             </div>
         </mat-tree-node>
         <mat-tree-node *matTreeNodeDef="let treeNode; when: hasChild" matTreeNodePadding fxLayout="column"
             fxLayoutAlign="start">
-            <div fxLayout="row" fxLayoutAlign="start center">
-                <mat-icon matTreeNodeToggle class="ngx-treeview-expand-collapse-icon">
-                    {{ treeControl.isExpanded(treeNode) ? collapseMaterialIcon : expandMaterialIcon}}</mat-icon>
-                <img *ngIf="treeNode?.node?.iconPath" matTreeNodeToggle class="ngx-treeview-expand-collapse-icon"
-                    [src]="treeNode?.node?.iconPath" alt="ngx-treeview-icon">
-                <div matTreeNodeToggle *ngIf="!template">{{treeNode?.node[nodeNameProperty]}}</div>
-                <ngx-treeview-dynamic-template *ngIf="template" [template]="template" [treeControl]="treeControl" [nodeData]="treeNode" (callbackFn)="callbackFn($event)"></ngx-treeview-dynamic-template>
+            <div [fxLayout]="options.iconPosition == 'prefix' ? 'row' : 'row-reverse'" [fxLayoutAlign]="options.iconPosition == 'prefix' ? 'start center' : 'space-between'">
+                <mat-icon matSuffix *ngIf="options.showExpandCollapseIcon" matTreeNodeToggle
+                    class="ngx-treeview-expand-collapse-icon">
+                    {{ treeControl.isExpanded(treeNode) ? options?.collapseMaterialIcon : options?.expandMaterialIcon}}
+                </mat-icon>
+
+                <div [fxLayout]="options.nodeIconPosition == 'prefix' ? 'row' : 'row-reverse'" fxLayoutAlign="start center" class="ngx-treeview-expandable-node ngx-treeview-node">
+                    <img *ngIf="treeNode?.node?.iconPath" matTreeNodeToggle class="ngx-treeview-icon"
+                        [src]="treeNode?.node?.iconPath" alt="ngx-treeview-icon">
+                    <div matTreeNodeToggle class="ngx-treeview-node-label" *ngIf="!template">{{treeNode?.node[options?.nodeNameProperty]}}</div>
+                    <ngx-treeview-dynamic-template *ngIf="template" [template]="template" [treeControl]="treeControl"
+                        [nodeData]="treeNode" (callbackFn)="callbackFn($event)"></ngx-treeview-dynamic-template>
+                </div>
+
             </div>
         </mat-tree-node>
     </mat-tree>
