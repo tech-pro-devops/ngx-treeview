@@ -1,40 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TreeNode } from 'projects/ngx-treeview/src/lib/model/tree-node.model';
+import { AppService } from './app.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
+  
   title = 'ngx-treeview-demo';
-  treeData: TreeNode[] = [
-    {
-      id: 1,
-      name: 'India',
-      children: [
-        {
-          id: 4,
-          name: 'Chandigarh',
-          children: [
+  simpleTreeData : TreeNode[];
 
-          ]
-        }
-      ]
-    },
-    {
-      id: 2,
-      name: 'USA',
-      children: [
+  constructor(private service: AppService){}
 
-      ]
-    },
-    {
-      id: 3,
-      name: 'Canada',
-      children: [
-
-      ]
-    }
-  ]
+  ngOnInit(){
+    this.simpleTreeData = this.service.simpleTreeData();
+  }
 }

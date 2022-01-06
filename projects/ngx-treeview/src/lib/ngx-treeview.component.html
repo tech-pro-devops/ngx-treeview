@@ -1,18 +1,24 @@
 <div *ngIf="data && data.length > 0" class="ngx-treeview">
     <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
         <mat-tree-node *matTreeNodeDef="let treeNode" matTreeNodePadding fxLayout="column" fxLayoutAlign="start">
-            <div fxLayout="row">
-                <mat-icon class="ngx-tree-view-expand-collapse-icon"></mat-icon>
-                <div>{{treeNode?.node[treeNodeNameProperty]}}</div>
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon *ngIf="!treeNode?.node?.iconPath" class="ngx-treeview-icon"></mat-icon>
+                <img *ngIf="treeNode?.node?.iconPath" class="ngx-treeview-icon"
+                    [src]="treeNode?.node?.iconPath" alt="ngx-treeview-icon">
+                <div *ngIf="!template">{{treeNode?.node[nodeNameProperty]}}</div>
+                <ngx-treeview-dynamic-template *ngIf="template" [template]="template" [treeControl]="treeControl" [nodeData]="treeNode" (callbackFn)="callbackFn($event)"></ngx-treeview-dynamic-template>
             </div>
         </mat-tree-node>
-        <mat-tree-node *matTreeNodeDef="let treeNode; when: hasChild" matTreeNodePadding fxLayout="column" fxLayoutAlign="start">
-            <div fxLayout="row">
-                <mat-icon matTreeNodeToggle class="ngx-tree-view-expand-collapse-icon">{{ treeControl.isExpanded(treeNode) ? 'expand_more' : 'chevron_right'}}</mat-icon>
-                <div>{{treeNode?.node[treeNodeNameProperty]}}</div>
+        <mat-tree-node *matTreeNodeDef="let treeNode; when: hasChild" matTreeNodePadding fxLayout="column"
+            fxLayoutAlign="start">
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon *ngIf="!treeNode?.node?.iconPath" matTreeNodeToggle class="ngx-treeview-expand-collapse-icon">
+                    {{ treeControl.isExpanded(treeNode) ? collapseMaterialIcon : expandMaterialIcon}}</mat-icon>
+                <img *ngIf="treeNode?.node?.iconPath" matTreeNodeToggle class="ngx-treeview-expand-collapse-icon"
+                    [src]="treeNode?.node?.iconPath" alt="ngx-treeview-icon">
+                <div *ngIf="!template">{{treeNode?.node[nodeNameProperty]}}</div>
+                <ngx-treeview-dynamic-template *ngIf="template" [template]="template" [treeControl]="treeControl" [nodeData]="treeNode" (callbackFn)="callbackFn($event)"></ngx-treeview-dynamic-template>
             </div>
         </mat-tree-node>
-     </mat-tree>
+    </mat-tree>
 </div>
-
- 

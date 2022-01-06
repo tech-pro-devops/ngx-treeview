@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {SelectionModel} from '@angular/cdk/collections';
 import {FlatTreeControl} from '@angular/cdk/tree';
 import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
@@ -13,8 +13,12 @@ import { FlatTreeNode, TreeNode } from './model/tree-node.model';
 })
 export class NgxTreeviewComponent implements OnInit {
   @Input() data: TreeNode[] | Object[] = [];
-  @Input() treeNodeNameProperty: string = 'name';
+  @Input() nodeNameProperty: string = 'name';
   @Input() childrenProperty: string = 'children';
+  @Input() expandMaterialIcon: string = 'chevron_right';
+  @Input() collapseMaterialIcon: string = 'expand_more';
+  @Input() template : Component;
+  @Output() callbackHandler = new EventEmitter();
 
   treeControl: FlatTreeControl<FlatTreeNode>;
   treeFlattener: MatTreeFlattener<TreeNode, FlatTreeNode>;
@@ -43,6 +47,10 @@ export class NgxTreeviewComponent implements OnInit {
     }
   }
 
-
+  callbackFn(event){
+    if(Object.keys(event).length > 0){
+      this.callbackHandler.emit(event);
+    }
+  }
 
 }

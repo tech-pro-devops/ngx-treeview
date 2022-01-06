@@ -1,7 +1,7 @@
 export class TreeNode {
     id?: number; 
     name?: string;
-    iconName?: string;
+    iconPath?: string;
     children?: TreeNode[];
     metadata?: Object;
 }

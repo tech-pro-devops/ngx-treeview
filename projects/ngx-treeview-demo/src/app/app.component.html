@@ -1,1 +1,10 @@
-<ngx-treeview [data]="treeData"></ngx-treeview>
+<div class="ngx-treeview-demo">
+    <div class="box">
+        <h3>Simple Material TreeView</h3>
+        <ngx-treeview [data]="simpleTreeData"></ngx-treeview>
+    </div>
+    <div class="box">
+        <h3>Simple Material TreeView with different Expand/Collapse Material Icon</h3>
+        <ngx-treeview [data]="simpleTreeData" expandMaterialIcon="add" collapseMaterialIcon="remove"></ngx-treeview>
+    </div>
+</div>
