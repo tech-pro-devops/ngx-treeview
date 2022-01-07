@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    NgxTreeviewModule,
+    NgxTreeviewModule.forRoot(),
     FlexLayoutModule
   ],
   providers: [],
