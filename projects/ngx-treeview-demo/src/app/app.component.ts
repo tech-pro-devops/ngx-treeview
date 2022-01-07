@@ -11,15 +11,28 @@ export class AppComponent implements OnInit{
   
   title = 'ngx-treeview-demo';
   simpleTreeData : TreeNode[];
+  nodeIconTreeData : TreeNode[];
 
-  options: NgxTreeViewOptions = {
+  expandCollapseOptions: NgxTreeViewOptions = {
     expandMaterialIcon: 'add',
     collapseMaterialIcon: 'remove',
+  }
+  showExpandCollapseIconOptions: NgxTreeViewOptions = {
+    showExpandCollapseIcon : false
+  }
+
+  iconPositionOptions: NgxTreeViewOptions = {
+    iconPosition:'suffix'
+  }
+
+  nodeIconOptions : NgxTreeViewOptions = {
+    nodeIconPosition : 'suffix'
   }
 
   constructor(private service: AppService){}
 
   ngOnInit(){
     this.simpleTreeData = this.service.simpleTreeData();
+    this.nodeIconTreeData = this.service.nodeIconTreeData();
   }
 }
