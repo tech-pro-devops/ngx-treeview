@@ -12,12 +12,10 @@ export class AppService{
             {
               id: 1,
               name: 'India',
-              iconPath : './assets/demo.png',
               children: [
                 {
                   id: 4,
                   name: 'Chandigarh',
-                  iconPath : './assets/demo.png'
                 },
                 {
                   id: 5,
@@ -68,7 +66,6 @@ export class AppService{
             {
               id: 3,
               name: 'Canada',
-              iconPath : './assets/demo.png'
             }
           ]
     }

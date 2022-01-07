@@ -23,7 +23,7 @@ export class NgxTreeviewComponent implements OnInit {
     collapseMaterialIcon: 'expand_more',
     iconPosition: 'prefix',
     nodeIconPosition: 'prefix',
-    showExpandCollapseIcon: false
+    showExpandCollapseIcon: true
   }
   
   treeControl: FlatTreeControl<FlatTreeNode>;
@@ -56,6 +56,19 @@ export class NgxTreeviewComponent implements OnInit {
       expandable: !!treeNode[this.options.childrenProperty] && treeNode[this.options.childrenProperty].length > 0,
       level: level,
     }
+  }
+
+  toggleTree(treeNode,matTreeNodeToggle){
+    if(matTreeNodeToggle){
+      this.treeControl.toggle(treeNode)
+    }
+  }
+
+  getIcon(treeNode,matTreeNodeToggle){
+    if(matTreeNodeToggle){
+      return this.treeControl.isExpanded(treeNode) ? this.options?.collapseMaterialIcon : this.options?.expandMaterialIcon
+    }
+    return '';
   }
 
   callbackFn(event){
