@@ -40,8 +40,6 @@ export class AppModule {}
 ```
 
 
-
-
 ## NgxTreeViewOptions(Config/Options)
 
 Use these properties to customize the treeview component.
@@ -56,3 +54,74 @@ Use these properties to customize the treeview component.
 | nodeIconPosition | Placement of Icon when passed with the tree Data | string | `prefix` | true |
 | showExpandCollapseIcon | Hide the expand/collapse icons | boolean | `true` | true |
 | showCheckbox | To show the checkbox along with the tree data | boolean | `false` | true |
+| showChildCount | To show the child count with the parent node | boolean | `false` | true |
+
+## Callback(Event)
+
+**callbackHandler** - To get the event when we click on the node.
+**selectionCallback** - To get the selection Model event when we select the checkbox.
+
+
+## Example
+```typescript
+import {Component,OnInit} from '@angular/core';
+import { NgxTreeViewOptions, TreeNode } from '@tech-pro/ngx-treeview';
+
+@Component({
+  selector: 'app-root',
+  template: `
+       <ngx-treeview [data]="simpleTreeData" [options]="options"></ngx-treeview>
+ `,
+  styles: []
+})
+export class AppComponent implements OnInit{
+
+  simpleTreeData : TreeNode[];
+  options: NgxTreeViewOptions = {
+    expandMaterialIcon: 'add',
+    collapseMaterialIcon: 'remove',
+    showExpandCollapseIcon: true,
+    showCheckbox : false
+  }
+
+    constructor() {}
+    
+    ngOnInit(){
+        this.simpleTreeData = [
+      {
+        id: 1,
+        name: 'India',
+        children: [
+          {
+            id: 4,
+            name: 'Chandigarh',
+          },
+          {
+            id: 6,
+            name: 'Punjab'
+          }
+        ]
+      },
+      {
+        id: 2,
+        name: 'USA',
+        children: [
+          {
+            id: 7,
+            name: 'California'
+          },
+          {
+            id: 8,
+            name: 'Arizona'
+          }
+        ]
+      },
+      {
+        id: 3,
+        name: 'Canada',
+      }
+    ];
+    }
+
+}
+```

@@ -1,19 +1,19 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import {SelectionModel} from '@angular/cdk/collections';
-import {FlatTreeControl} from '@angular/cdk/tree';
-import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
-import {BehaviorSubject, merge} from 'rxjs';
-
+import { SelectionModel } from '@angular/cdk/collections';
+import { FlatTreeControl } from '@angular/cdk/tree';
+import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { FlatTreeNode, NgxTreeViewOptions, TreeNode } from './model/treeview.model';
+
 @Component({
   selector: 'ngx-treeview',
   templateUrl: './ngx-treeview.component.html',
-  styleUrls: ['./ngx-treeview.component.scss'] 
+  styleUrls: ['./ngx-treeview.component.scss']
 })
 export class NgxTreeviewComponent implements OnInit {
+
   @Input() data: TreeNode[] | Object[] = [];
-  @Input() options : NgxTreeViewOptions;
-  @Input() template : Component;
+  @Input() options: NgxTreeViewOptions;
+  @Input() template: Component;
   @Output() callbackHandler = new EventEmitter();
   @Output() selectionCallback = new EventEmitter();
 
@@ -25,15 +25,16 @@ export class NgxTreeviewComponent implements OnInit {
     iconPosition: 'prefix',
     nodeIconPosition: 'prefix',
     showExpandCollapseIcon: true,
-    showCheckbox : false
+    showCheckbox: false,
+    showChildCount : false
   }
-  
+
   treeControl: FlatTreeControl<FlatTreeNode>;
   treeFlattener: MatTreeFlattener<TreeNode, FlatTreeNode>;
   dataSource: MatTreeFlatDataSource<TreeNode, FlatTreeNode>;
   checkboxSelection = new SelectionModel<FlatTreeNode>(true);
 
-  constructor() { 
+  constructor() {
 
   }
 
@@ -44,38 +45,38 @@ export class NgxTreeviewComponent implements OnInit {
     this.dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
     this.dataSource.data = this.data;
   }
-  
+
   private initializeOptions(): void {
-    this.options = Object.assign(this.defaultOptions, this.options); 
+    this.options = Object.assign(this.defaultOptions, this.options);
   }
 
   getLevel = (flatTreeNode: FlatTreeNode) => flatTreeNode.level;
   isExpandable = (flatTreeNode: FlatTreeNode) => flatTreeNode.expandable;
   hasChild = (_: number, _flatTreeNode: FlatTreeNode) => _flatTreeNode.expandable;
-  
+
   private _transformer = (treeNode: TreeNode | Object, level: number): FlatTreeNode => {
     return {
-      node : treeNode,
+      node: treeNode,
       expandable: !!treeNode[this.options.childrenProperty] && treeNode[this.options.childrenProperty].length > 0,
       level: level,
     }
   }
 
-  toggleTree(treeNode,matTreeNodeToggle){
-    if(matTreeNodeToggle){
+  toggleTree(treeNode, matTreeNodeToggle) {
+    if (matTreeNodeToggle) {
       this.treeControl.toggle(treeNode)
     }
   }
 
-  getIcon(treeNode,matTreeNodeToggle){
-    if(matTreeNodeToggle){
+  getIcon(treeNode, matTreeNodeToggle) {
+    if (matTreeNodeToggle) {
       return this.treeControl.isExpanded(treeNode) ? this.options?.collapseMaterialIcon : this.options?.expandMaterialIcon
     }
     return '';
   }
 
-  callbackFn(event){
-    if(Object.keys(event).length > 0){
+  callbackFn(event) {
+    if (Object.keys(event).length > 0) {
       this.callbackHandler.emit(event);
     }
   }
@@ -163,14 +164,14 @@ export class NgxTreeviewComponent implements OnInit {
     this.selectionCallback.emit(this.checkboxSelection.selected);
   }
 
+  getCount(treeNode){
+    return this.treeControl.getDescendants(treeNode).length;
+  }
+
 }
 
 /**
  * Todo:
  * Use Ng Template
- * Lazyloading
- * Comments
- * Read me
- * Count Option Discussion - Pros
- * Support for both Material Icon and External Asset Icons
- */
+ * Lazy loading
+*/

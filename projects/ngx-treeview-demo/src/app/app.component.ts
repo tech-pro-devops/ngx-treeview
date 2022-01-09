@@ -33,6 +33,10 @@ export class AppComponent implements OnInit{
     showCheckbox : true
   }
 
+  countOptions: NgxTreeViewOptions = {
+    showChildCount : true
+  }
+
   constructor(private service: AppService){}
 
   ngOnInit(){

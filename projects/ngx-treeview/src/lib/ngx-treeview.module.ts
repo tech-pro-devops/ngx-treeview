@@ -4,6 +4,7 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
+import { MatBadgeModule } from '@angular/material/badge';
 import { NgxTreeviewComponent } from './ngx-treeview.component';
 import { CommonModule } from '@angular/common';
 import { NgxTreeviewDynamicTemplate } from './helper/ngx-treeview-dynamic-template';
@@ -22,6 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatIconModule,
     MatButtonModule,
     MatCheckboxModule,
+    MatBadgeModule,
     FlexLayoutModule
   ],
   exports: [
