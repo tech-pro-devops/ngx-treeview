@@ -11,8 +11,7 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    NgxTreeviewModule.forRoot(),
-    FlexLayoutModule
+    NgxTreeviewModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
