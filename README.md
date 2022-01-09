@@ -66,6 +66,7 @@ Use these properties to customize the treeview component.
 ## Callback(Event)
 
 **callbackHandler** - To get the event when we click on the node.
+
 **selectionCallback** - To get the selection Model event when we select the checkbox.
 
 
