@@ -8,6 +8,13 @@
 ## Installation
     npm install --save @tech-pro/ngx-treeview
 
+## Pre-requisites
+    Install the angular material package
+    [Angular Material](https://material.angular.io/guide/getting-started)
+
+    Import Angular Material theme in style.scss: 
+    @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 ## Usage
 
 ### Import `NgxTreeviewModule`
