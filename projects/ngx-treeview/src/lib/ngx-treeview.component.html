@@ -15,20 +15,32 @@
 </div>
 
 <ng-template #treeTemplate let-options="options" let-treeNode="treeNode" let-matTreeNodeToggle="matTreeNodeToggle">
-    <div [fxLayout]="options.iconPosition == 'prefix' ? 'row' : 'row-reverse'"
-        [fxLayoutAlign]="options.iconPosition == 'prefix' ? 'start center' : 'space-between'">
-        <mat-icon *ngIf="options.showExpandCollapseIcon" (click)="toggleTree(treeNode,matTreeNodeToggle)"
+    <div [fxLayout]="options?.iconPosition == 'prefix' ? 'row' : 'row-reverse'"
+        [fxLayoutAlign]="options?.iconPosition == 'prefix' ? 'start center' : 'space-between'">
+        <mat-icon *ngIf="options?.showExpandCollapseIcon" (click)="toggleTree(treeNode,matTreeNodeToggle)"
             class="ngx-treeview-expand-collapse-icon" [ngClass]="!matTreeNodeToggle ? 'hidden' :''">
             {{getIcon(treeNode,matTreeNodeToggle)}}
         </mat-icon>
-        <div [fxLayout]="options?.nodeIconPosition == 'prefix' ? 'row' : 'row-reverse'" fxLayoutAlign="start center"
-            class="ngx-treeview-node" [ngClass]="matTreeNodeToggle ? 'ngx-treeview-expandable-node' :''">
-            <img (click)="toggleTree(treeNode,matTreeNodeToggle)" *ngIf="treeNode?.node?.iconPath"
-                class="ngx-treeview-icon" [src]="treeNode?.node?.iconPath" alt="ngx-treeview-icon">
-            <div (click)="toggleTree(treeNode,matTreeNodeToggle)" class="ngx-treeview-node-label" *ngIf="!template">
-                {{treeNode?.node[options?.nodeNameProperty]}}</div>
-            <ngx-treeview-dynamic-template *ngIf="template" [template]="template" [treeControl]="treeControl"
-                [nodeData]="treeNode" (callbackFn)="callbackFn($event)"></ngx-treeview-dynamic-template>
+        <div fxLayout="row">
+            <div *ngIf="!template && options?.showCheckbox">
+                <mat-checkbox *ngIf="!matTreeNodeToggle" class="ngx-treeview-checkbox-node"
+                    [checked]="checkboxSelection.isSelected(treeNode)" (change)="leafItemSelectionToggle(treeNode)">
+                </mat-checkbox>
+                <mat-checkbox *ngIf="matTreeNodeToggle" [checked]="descendantsAllSelected(treeNode)"
+                    [indeterminate]="descendantsPartiallySelected(treeNode)" (change)="itemSelectionToggle(treeNode)">
+                </mat-checkbox>
+            </div>
+            <div (callbackFn)="callbackFn(treeNode?.node)" *ngIf="!template"
+                [fxLayout]="options?.nodeIconPosition == 'prefix' ? 'row' : 'row-reverse'" fxLayoutAlign="start center"
+                class="ngx-treeview-node" [ngClass]="matTreeNodeToggle ? 'ngx-treeview-expandable-node' :''">
+                <img (click)="toggleTree(treeNode,matTreeNodeToggle)" *ngIf="treeNode?.node?.iconPath"
+                    class="ngx-treeview-icon" [src]="treeNode?.node?.iconPath" alt="ngx-treeview-icon">
+                <div (click)="toggleTree(treeNode,matTreeNodeToggle)" class="ngx-treeview-node-label">
+                    {{treeNode?.node[options?.nodeNameProperty]}}</div>
+            </div>
         </div>
+
+        <ngx-treeview-dynamic-template *ngIf="template" [template]="template" [treeControl]="treeControl"
+            [nodeData]="treeNode" (callbackFn)="callbackFn($event)"></ngx-treeview-dynamic-template>
     </div>
 </ng-template>

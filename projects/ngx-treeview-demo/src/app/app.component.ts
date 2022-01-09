@@ -29,6 +29,10 @@ export class AppComponent implements OnInit{
     nodeIconPosition : 'suffix'
   }
 
+  checkboxOptions: NgxTreeViewOptions = {
+    showCheckbox : true
+  }
+
   constructor(private service: AppService){}
 
   ngOnInit(){

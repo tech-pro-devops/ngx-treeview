@@ -1,24 +1,58 @@
-# NgxTreeview
+# ngx-treeview
+> Angular Material Treeview Component. 
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.0.
+[Stackblitz](https://stackblitz.com/edit/angular-ivy-gbgatx)
 
-## Code scaffolding
+[Demo](https://angular-ivy-gbgatx.stackblitz.io)
 
-Run `ng generate component component-name --project ngx-treeview` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-treeview`.
-> Note: Don't forget to add `--project ngx-treeview` or else it will be added to the default project in your `angular.json` file. 
+## Installation
+    npm install --save @tech-pro/ngx-treeview
 
-## Build
+## Usage
 
-Run `ng build ngx-treeview` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Import `NgxTreeviewModule`
 
-## Publishing
+```javascript
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {AppComponent} from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxTreeviewModule } from '@tech-pro/ngx-treeview';
 
-After building your library with `ng build ngx-treeview`, go to the dist folder `cd dist/ngx-treeview` and run `npm publish`.
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    NgxTreeviewModule.forRoot()
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+```
 
-## Running unit tests
+### Place the `ngx-treeview` tag in your template file
 
-Run `ng test ngx-treeview` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```html
+<ngx-treeview [data]="simpleTreeData"></ngx-treeview>
+```
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+## NgxTreeViewOptions(Config/Options)
+
+Use these properties to customize the treeview component.
+
+| Name | Description | Type | Default | Optional |
+| --- | --- | --- | --- | --- |
+| nodeNameProperty | Key to denote the parent in the treeData | string | `name` | true |
+| childrenProperty | Key to denote the children in the treeData | string | `children` | true |
+| expandMaterialIcon  | Material Icon to expand treeview | string | `chevron_right` | true |
+| collapseMaterialIcon | Material Icon to collapse treeview | string | `expand_more` | true |
+| iconPosition | Placement of treeview icon | string | `prefix` | true |
+| nodeIconPosition | Placement of Icon when passed with the tree Data | string | `prefix` | true |
+| showExpandCollapseIcon | Hide the expand/collapse icons | boolean | `true` | true |
+| showCheckbox | To show the checkbox along with the tree data | boolean | `false` | true |

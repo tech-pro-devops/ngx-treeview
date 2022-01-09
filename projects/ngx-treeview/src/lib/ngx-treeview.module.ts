@@ -2,11 +2,13 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { NgxTreeviewComponent } from './ngx-treeview.component';
 import { CommonModule } from '@angular/common';
 import { NgxTreeviewDynamicTemplate } from './helper/ngx-treeview-dynamic-template';
 import { NgxTreeviewService } from './ngx-treeview.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -15,19 +17,22 @@ import { NgxTreeviewService } from './ngx-treeview.service';
   ],
   imports: [
     CommonModule,
+    BrowserAnimationsModule,
     MatTreeModule,
     MatIconModule,
     MatButtonModule,
+    MatCheckboxModule,
     FlexLayoutModule
   ],
   exports: [
     MatTreeModule,
     NgxTreeviewComponent,
     MatIconModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatCheckboxModule
   ]
 })
-export class NgxTreeviewModule { 
+export class NgxTreeviewModule {
   static forRoot(): ModuleWithProviders<NgxTreeviewModule> {
     return {
       ngModule: NgxTreeviewModule,

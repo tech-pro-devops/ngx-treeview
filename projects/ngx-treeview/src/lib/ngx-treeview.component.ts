@@ -15,6 +15,7 @@ export class NgxTreeviewComponent implements OnInit {
   @Input() options : NgxTreeViewOptions;
   @Input() template : Component;
   @Output() callbackHandler = new EventEmitter();
+  @Output() selectionCallback = new EventEmitter();
 
   defaultOptions: NgxTreeViewOptions = {
     nodeNameProperty: 'name',
@@ -23,12 +24,14 @@ export class NgxTreeviewComponent implements OnInit {
     collapseMaterialIcon: 'expand_more',
     iconPosition: 'prefix',
     nodeIconPosition: 'prefix',
-    showExpandCollapseIcon: true
+    showExpandCollapseIcon: true,
+    showCheckbox : false
   }
   
   treeControl: FlatTreeControl<FlatTreeNode>;
   treeFlattener: MatTreeFlattener<TreeNode, FlatTreeNode>;
   dataSource: MatTreeFlatDataSource<TreeNode, FlatTreeNode>;
+  checkboxSelection = new SelectionModel<FlatTreeNode>(true);
 
   constructor() { 
 
@@ -77,12 +80,97 @@ export class NgxTreeviewComponent implements OnInit {
     }
   }
 
+  leafItemSelectionToggle(node: FlatTreeNode): void {
+    this.checkboxSelection.toggle(node);
+    this.checkAllParentsSelection(node);
+    this.selectionCallback.emit(this.checkboxSelection.selected);
+  }
+
+  /* Checks all the parents when a leaf node is selected/unselected */
+  checkAllParentsSelection(node: FlatTreeNode): void {
+    let parent: FlatTreeNode | null = this.getParentNode(node);
+    while (parent) {
+      this.checkRootNodeSelection(parent);
+      parent = this.getParentNode(parent);
+    }
+  }
+
+  /* Get the parent node of a node */
+  getParentNode(node: FlatTreeNode): FlatTreeNode | null {
+    const currentLevel = this.getLevel(node);
+
+    if (currentLevel < 1) {
+      return null;
+    }
+
+    const startIndex = this.treeControl.dataNodes.indexOf(node) - 1;
+
+    for (let i = startIndex; i >= 0; i--) {
+      const currentNode = this.treeControl.dataNodes[i];
+
+      if (this.getLevel(currentNode) < currentLevel) {
+        return currentNode;
+      }
+    }
+    return null;
+  }
+
+  /** Check root node checked state and change it accordingly */
+  checkRootNodeSelection(node: FlatTreeNode): void {
+    const nodeSelected = this.checkboxSelection.isSelected(node);
+    const descendants = this.treeControl.getDescendants(node);
+    const descAllSelected =
+      descendants.length > 0 &&
+      descendants.every(child => {
+        return this.checkboxSelection.isSelected(child);
+      });
+    if (nodeSelected && !descAllSelected) {
+      this.checkboxSelection.deselect(node);
+    } else if (!nodeSelected && descAllSelected) {
+      this.checkboxSelection.select(node);
+    }
+  }
+
+  /** Whether all the descendants of the node are selected. */
+  descendantsAllSelected(node: FlatTreeNode): boolean {
+    const descendants = this.treeControl.getDescendants(node);
+    const descAllSelected =
+      descendants.length > 0 &&
+      descendants.every(child => {
+        return this.checkboxSelection.isSelected(child);
+      });
+    return descAllSelected;
+  }
+
+  /** Whether part of the descendants are selected */
+  descendantsPartiallySelected(node: FlatTreeNode): boolean {
+    const descendants = this.treeControl.getDescendants(node);
+    const result = descendants.some(child => this.checkboxSelection.isSelected(child));
+    return result && !this.descendantsAllSelected(node);
+  }
+
+  /** Toggle the to-do item selection. Select/deselect all the descendants node */
+  itemSelectionToggle(node: FlatTreeNode): void {
+    this.checkboxSelection.toggle(node);
+    const descendants = this.treeControl.getDescendants(node);
+    this.checkboxSelection.isSelected(node)
+      ? this.checkboxSelection.select(...descendants)
+      : this.checkboxSelection.deselect(...descendants);
+
+    // Force update for the parent
+    descendants.forEach(child => this.checkboxSelection.isSelected(child));
+    this.checkAllParentsSelection(node);
+    this.selectionCallback.emit(this.checkboxSelection.selected);
+  }
+
 }
 
 /**
  * Todo:
  * Use Ng Template
+ * Lazyloading
+ * Comments
+ * Read me
  * Count Option Discussion - Pros
- * Support for both Material Iocn and External Asset Icons
- * 
+ * Support for both Material Icon and External Asset Icons
  */
