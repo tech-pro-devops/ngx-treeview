@@ -10,10 +10,14 @@
 
 ## Pre-requisites
     Install the angular material package
-    [Angular Material](https://material.angular.io/guide/getting-started)
+    ng add @angular/material
 
     Import Angular Material theme in style.scss: 
     @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+    Add Material Icon link in index.html
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 
 ## Usage
 

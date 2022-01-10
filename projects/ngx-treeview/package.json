@@ -1,6 +1,6 @@
 {
   "name": "@tech-pro/ngx-treeview",
-  "version": "1.0.1-beta",
+  "version": "1.0.2-beta",
   "peerDependencies": {
     "@angular/common": "13.1.0",
     "@angular/core": "13.1.0",
