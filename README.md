@@ -47,6 +47,14 @@ export class AppModule {}
 ```
 
 
+## Input Properties (@Input)
+
+| Name | Description | Type | Default | Optional |
+| --- | --- | --- | --- | --- |
+| data | To Pass Tree View Data | `TreeNode[] | Object[]`  | - | false |
+| options | To Pass config properties to customize the Treeview | `NgxTreeViewOptions`  | - | false |
+| nodeTemplate | To Pass Custom Tree View Node Template i.e. <ng-template #customTemplate></ng-template> | `TemplateRef<any>` | Default Node Template | true |
+
 ## NgxTreeViewOptions(Config/Options)
 
 Use these properties to customize the treeview component.
@@ -63,7 +71,8 @@ Use these properties to customize the treeview component.
 | showCheckbox | To show the checkbox along with the tree data | boolean | `false` | true |
 | showChildCount | To show the child count with the parent node | boolean | `false` | true |
 
-## Callback(Event)
+
+## Callback(@Output)
 
 **callbackHandler** - To get the event when we click on the node.
 
