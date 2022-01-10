@@ -12,6 +12,7 @@ export class AppComponent implements OnInit{
   title = 'ngx-treeview-demo';
   simpleTreeData : TreeNode[];
   nodeIconTreeData : TreeNode[];
+  customTreeData: TreeNode[];
 
   expandCollapseOptions: NgxTreeViewOptions = {
     expandMaterialIcon: 'add',
@@ -42,5 +43,11 @@ export class AppComponent implements OnInit{
   ngOnInit(){
     this.simpleTreeData = this.service.simpleTreeData();
     this.nodeIconTreeData = this.service.nodeIconTreeData();
+    this.customTreeData = this.service.customTreeData();
+  }
+
+  showAlert() {
+    console.log("Custom event Clicked")
+    alert("Hello");
   }
 }

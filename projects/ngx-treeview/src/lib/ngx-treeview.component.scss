@@ -23,7 +23,9 @@
 .ngx-treeview {
   .ngx-treeview-node {
     &.ngx-treeview-expandable-node {
-      cursor: pointer;
+      .ngx-treeview-node-content {
+        cursor: pointer;
+      } 
     }
     .ngx-treeview-expand-collapse-icon {
       cursor: pointer;

@@ -34,4 +34,19 @@
         <h3>Material TreeView with Child Count</h3>
         <ngx-treeview [data]="simpleTreeData" [options]="countOptions"></ngx-treeview>
     </div>
+    <div class="box">
+        <h3>Treeview with Custom Template</h3>
+        <ngx-treeview [data]="simpleTreeData" [nodeTemplate]="nodeTemplate"></ngx-treeview>
+        <ng-template #nodeTemplate 
+            let-matTreeNodeToggle="matTreeNodeToggle" 
+            let-treeNode="treeNode"
+            let-options="options"
+            >
+            <mat-chip-list (click)="showAlert()">
+                <mat-chip>{{treeNode?.node.name}}</mat-chip>
+            </mat-chip-list>
+            &nbsp;&nbsp;
+            <div *ngIf="treeNode?.node?.children?.length">has {{treeNode?.node?.children?.length}} Children</div>
+        </ng-template>
+    </div>
 </div>

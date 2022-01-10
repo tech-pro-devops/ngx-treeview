@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
@@ -14,8 +14,13 @@ export class NgxTreeviewComponent implements OnInit {
   @Input() data: TreeNode[] | Object[] = [];
   @Input() options: NgxTreeViewOptions;
   @Input() template: Component;
+  /**
+   * A custom template to use to replace the Tree Node
+   */
+  @Input() nodeTemplate: TemplateRef<any>;
   @Output() callbackHandler = new EventEmitter();
   @Output() selectionCallback = new EventEmitter();
+  
 
   defaultOptions: NgxTreeViewOptions = {
     nodeNameProperty: 'name',
