@@ -174,9 +174,3 @@ export class NgxTreeviewComponent implements OnInit {
   }
 
 }
-
-/**
- * Todo:
- * Use Ng Template
- * Lazy loading
-*/
