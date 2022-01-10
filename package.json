@@ -1,6 +1,6 @@
 {
   "name": "ngx-treeview",
-  "version": "13.0.1",
+  "version": "1.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

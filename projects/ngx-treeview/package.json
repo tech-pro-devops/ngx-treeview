@@ -1,15 +1,42 @@
 {
-  "name": "ngx-treeview",
-  "version": "13.0.1",
+  "name": "@tech-pro/ngx-treeview",
+  "version": "1.0.1",
   "peerDependencies": {
     "@angular/common": "13.1.0",
     "@angular/core": "13.1.0",
     "@angular/material": "13.1.1",
     "@angular/animations": "13.1.0",
-    "@angular/cdk": "13.1.1",
-    "@angular/flex-layout": "13.0.0-beta.36"
+    "@angular/cdk": "13.1.1"
   },
   "dependencies": {
-    "tslib": "2.3.0"
-  }
+    "tslib": "2.3.0",
+    "@angular/flex-layout": "13.0.0-beta.36"
+  },
+  "description": "> Angular Material Treeview Component.",
+  "main": "karma.conf.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tech-pro-devops/ngx-treeview.git"
+  },
+  "keywords": [
+    "\"Angular\"",
+    "\"Angular",
+    "Material\"",
+    "\"Treeview\"",
+    "\"Tree\"",
+    "\"Material",
+    "Treeview\"",
+    "\"Left",
+    "Menu\""
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tech-pro-devops/ngx-treeview/issues"
+  },
+  "homepage": "https://github.com/tech-pro-devops/ngx-treeview#readme"
 }
