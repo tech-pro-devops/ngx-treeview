@@ -46,8 +46,4 @@ export class AppComponent implements OnInit{
     this.customTreeData = this.service.customTreeData();
   }
 
-  showAlert() {
-    console.log("Custom event Clicked")
-    alert("Hello");
-  }
 }
