@@ -62,6 +62,8 @@ Use these properties to customize the treeview component.
 | showExpandCollapseIcon | Hide the expand/collapse icons | boolean | `true` | true |
 | showCheckbox | To show the checkbox along with the tree data | boolean | `false` | true |
 | showChildCount | To show the child count with the parent node | boolean | `false` | true |
+| nodeTemplate | To Pass Custom Tree View Node Template i.e. <ng-template #customTemplate> | TemplateRef<any> | Default Node Template | true |
+
 
 ## Callback(Event)
 
