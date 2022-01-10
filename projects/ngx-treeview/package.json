@@ -1,6 +1,6 @@
 {
   "name": "@tech-pro/ngx-treeview",
-  "version": "1.0.1",
+  "version": "1.0.1-beta",
   "peerDependencies": {
     "@angular/common": "13.1.0",
     "@angular/core": "13.1.0",
@@ -9,8 +9,7 @@
     "@angular/cdk": "13.1.1"
   },
   "dependencies": {
-    "tslib": "2.3.0",
-    "@angular/flex-layout": "13.0.0-beta.36"
+    "tslib": "2.3.0"
   },
   "description": "> Angular Material Treeview Component.",
   "main": "karma.conf.js",
@@ -33,7 +32,7 @@
     "\"Left",
     "Menu\""
   ],
-  "author": "",
+  "author": "tech-pro",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/tech-pro-devops/ngx-treeview/issues"

@@ -1,3 +1,37 @@
+@mixin layout-row {
+  display: flex;
+  flex-direction: row;
+}
+@mixin layout-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin layout-row-reverse {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+@mixin layout-column-reverse {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+@mixin column-align-start {
+  place-content: stretch flex-start;
+  align-items: stretch;
+}
+
+@mixin row-align-start-center {
+  place-content: center flex-start;
+  align-items: center;
+}
+
+@mixin align-space-between {
+  place-content: stretch space-between;
+  align-items: stretch;
+}
+
 /* fallback */
 @font-face {
   font-family: "Material Icons";
@@ -21,19 +55,45 @@
   -webkit-font-smoothing: antialiased;
 }
 .ngx-treeview {
+
+  mat-tree-node{
+    @include layout-column;
+    @include column-align-start;
+  }
   .ngx-treeview-node {
+    &.ngx-treeview-prefix-icon{
+      @include layout-row;
+      @include row-align-start-center;
+    }
+    &.ngx-treeview-suffix-icon{
+      @include layout-row-reverse;
+      @include align-space-between;
+    }
     &.ngx-treeview-expandable-node {
-      .ngx-treeview-node-content {
+      .ngx-treeview-node-content-container {
         cursor: pointer;
       } 
+    }
+    .ngx-treeview-node-content-container{
+      @include layout-row;
+      .ngx-treeview-node-content{
+        @include layout-row;
+        @include row-align-start-center;
+      }
+      .ngx-treeview-node-content-prefix-icon{
+        @include layout-row;
+        @include row-align-start-center;
+      }
+      .ngx-treeview-node-content-suffix-icon{
+        @include layout-row-reverse;
+        @include row-align-start-center;
+      }
     }
     .ngx-treeview-expand-collapse-icon {
       cursor: pointer;
       &.hidden {
         cursor: default;
       }
-    }
-    .ngx-treeview-icon {
     }
     .ngx-treeview-node-label {
       margin-right: 5px;

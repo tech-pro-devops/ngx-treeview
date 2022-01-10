@@ -1,5 +1,4 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -23,15 +22,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatIconModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatBadgeModule,
-    FlexLayoutModule
+    MatBadgeModule
   ],
   exports: [
-    MatTreeModule,
-    NgxTreeviewComponent,
-    MatIconModule,
-    FlexLayoutModule,
-    MatCheckboxModule
+    NgxTreeviewComponent
   ]
 })
 export class NgxTreeviewModule {
