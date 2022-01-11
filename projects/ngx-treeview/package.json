@@ -1,17 +1,17 @@
 {
   "name": "@tech-pro/ngx-treeview",
-  "version": "1.0.2-beta",
+  "version": "1.0.4-beta",
   "peerDependencies": {
-    "@angular/common": "13.1.0",
-    "@angular/core": "13.1.0",
-    "@angular/material": "13.1.1",
-    "@angular/animations": "13.1.0",
-    "@angular/cdk": "13.1.1"
+    "@angular/common": ">=11.0.5",
+    "@angular/core": ">=11.0.5",
+    "@angular/animations": ">=11.2.13",
+    "@angular/cdk": ">=11.2.13",
+    "@angular/material": ">=11.2.13"
   },
   "dependencies": {
     "tslib": "2.3.0"
   },
-  "description": "> Angular Material Treeview Component.",
+  "description": "Angular Material Treeview Component.",
   "main": "karma.conf.js",
   "devDependencies": {},
   "scripts": {
